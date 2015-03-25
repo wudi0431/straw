@@ -1,0 +1,22 @@
+{
+  "name": "straw",
+  "description": "字体抽取工具",
+  "version": "0.0.1",
+  "author": "TVVT Team",
+  "license": "MIT",
+  "bin": {
+    "straw": "bin/straw"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "main": "straw.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TVVT/straw.git"
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "fontmin": "0.4.8"
+  }
+}
