@@ -1,0 +1,19 @@
+style.
+       @font-face{
+         font-family: "SentyPaperCut";
+         src: url("/temp/SentyPaperCut.eot"); /* IE9 */
+         src: url("/temp/SentyPaperCut.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+         url("/temp/SentyPaperCut.woff") format("woff"), /* chrome、firefox */
+         url("/temp/SentyPaperCut.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
+         url("/temp/SentyPaperCut.svg#SentyPaperCut") format("svg"); /* iOS 4.1- */
+         font-style: normal;
+         font-weight: normal;}
+        #fontShow{
+            font-family: "SentyPaperCut";
+        }
+
+
+block content
+  div#fontShow= text
+  each path in paths
+    li #{path}
