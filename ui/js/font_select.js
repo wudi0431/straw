@@ -37,6 +37,7 @@ define(['FFF','zepto','font_element'],function(FFF,$,font_element){
 				F.trigger('addAttr',{
 					name:$name
 				},that);
+				F.off('addAttr');
 			});
 
 
