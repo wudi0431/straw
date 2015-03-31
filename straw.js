@@ -7,16 +7,21 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var strawFont = require('./routes/strawFont');
+var loadFontlist = require('./routes/loadFontlist');
+
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
+// app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
-var ejs=require('ejs');//新增  
-//添加以下  
-app.engine('.html',ejs.__express);  
-app.set('view engine', 'html');  
+
+
+var ejs = require('ejs');
+
+// view engine setup
+app.set('views', __dirname + '/views');
+app.engine('.html', ejs.__express);
+app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -29,6 +34,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 
 app.use('/strawFont', strawFont);
+
+app.use('/loadFontlist', loadFontlist);
 
 
 // catch 404 and forward to error handler

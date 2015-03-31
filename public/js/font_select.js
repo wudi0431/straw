@@ -1,4 +1,4 @@
-define(['FFF','zepto','font_element'],function(FFF,$,font_element){
+define(['FFF','zepto'],function(FFF,$){
 	var F=FFF.FFF;
 	var Widget=F.Widget;
 	function FontSelect(){
@@ -16,8 +16,18 @@ define(['FFF','zepto','font_element'],function(FFF,$,font_element){
 		},
 		renderUI:function(){
 			var that=this;
-			//ajax..
-			that.getBoundingBox().append('html');
+			$.ajax({
+	            type: "get",
+	            url: '/loadFontlist', 
+	            success: function(data){
+	               var html ='<li role="presentation"><a role="menuitem" tabindex="-1" href="#">SentyPaperCut</a></li>'
+	               that.getBoundingBox().append(html);
+
+	            },
+	            error: function(xhr, type){
+	                alert('Ajax error!')
+	            }   
+           });
 
 
 		},

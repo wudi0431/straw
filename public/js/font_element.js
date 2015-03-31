@@ -20,7 +20,7 @@ define(['FFF'],function(FFF){
 
 			});
 
-			var html=
+			//var html=
 		},
 		bindUI:function(){
 			var that=this;
