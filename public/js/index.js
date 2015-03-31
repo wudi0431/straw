@@ -1,6 +1,6 @@
-$(function() {
-    var $fontInput = $('.fontInput');
-    var $fontCreate = $('.fontCreate');
+require(['dom','FFF','zepto'],function(dom,FFF,$){
+         var $fontInput = $('textarea.form-control');
+    var $fontCreate = $('.btn-success');
     var $fontShowBox = $('.W_fontShow_box');
     var $facebookG = $('#facebookG');
 
