@@ -25,16 +25,18 @@ define(['FFF','zepto','font_element'],function(FFF,$,font_element){
 		bindUI:function(){
 			var that=this;
 
-			$('.J_select li').on('click',function(){
+			this.getBoundingBox().find('li').on('click',function(){
 				var FontElement=font_element.FontElement;
 				var fe=new FontElement();
 				var $name=$(this).find('a').text();
-				F.trigger('addAttr',{
-					target:$name
-				},that);
+				//console.log($name);
+
 				fe.render({
 					container:$('.W_s_fontPanel')
-				})
+				});
+				F.trigger('addAttr',{
+					name:$name
+				},that);
 			});
 
 
