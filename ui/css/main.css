@@ -1,0 +1,18 @@
+.W_s_input{background:#f6f6f6;padding: 20px;}
+.W_s_txtarea{width: 1000px;margin: auto;}
+.W_s_txtarea .form-control{width: 100%;height: 150px;resize: none;}
+.W_s_txtarea .btn{margin-top: 15px;}
+.W_s_chose,.W_s_fontPanel{width: 1000px;margin:20px auto;}
+.W_s_panelClose{float: right;font-size: 20px;cursor: pointer;}
+.W_s_font_eg{height: 120px;overflow: hidden;}
+.W_s_link_download a{display: inline-block;margin-right: 20px;}
+.W_s_link_download a:hover{text-decoration: none;}
+.W_s_fontNamePosts{margin: 20px 0;}
+.W_s_fontNamePosts>.label{font-size: 20px;}
+.W_s_fontNamePosts>.label>span:last-child{cursor:pointer;}
+.W_s_fontNamePosts>.label>span:first-child{margin-right: 40px;}
+.label-primary.large{margin: 10px;}
+.W_s_panelClose,.W_s_link_download{display: none;}
+.W_s_chose{position: relative;}
+.W_s_upload{position: absolute;right: 0;top: 0;}
+.J_hover{height: 240px;}
