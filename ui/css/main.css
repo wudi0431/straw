@@ -15,14 +15,4 @@
 .W_s_panelClose,.W_s_link_download{display: none;}
 .W_s_chose{position: relative;}
 .W_s_upload{position: absolute;right: 0;top: 0;}
-.test{animation-name: test;animation-duration: 2s;animation-timing-function: ease-in-out;}
-@keyframe test{
-	0%{
-		margin: 10px;
-		padding: 20px;
-	}
-	50%{
-		margin: 20px;
-		padding: 20px;
-	}
-}
+.J_hover{height: 240px;}

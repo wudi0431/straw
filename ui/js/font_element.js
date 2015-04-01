@@ -27,12 +27,17 @@ define(['FFF'],function(FFF){
 		},
 		bindUI:function(){
 			var that=this;
-			$('.J_hover').on('hover', function() {
+			var $box=this.getBoundingBox();
+			$box.on('mouseover', function() {
 				$(this).find('.J_close').show();
 				$(this).find('.W_s_link_download').show();
-			},function(){
+			});
+			$box.on('mouseleave',function(){
 				$(this).find('.J_close').hide();
 				$(this).find('.W_s_link_download').hide();
+			});
+			$box.find('.J_close').on('click',function(){
+				that.destory();
 			});
 
 
