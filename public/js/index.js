@@ -7,9 +7,9 @@ require.config({
 });
 
 require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
-      var $d = $('#fontinemlint');
+      var $d = $('.W_s_chose');
       var fe = new FontSelect.FontSelect().render({
-         container:$d
+         container:$d 
       }); 
 
     var $fontInput = $('textarea.form-control');
@@ -18,12 +18,16 @@ require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
     var $facebookG = $('#webfont');
 
 
+ 
+
     $fontCreate.on('click', function() {
+         console.log(fe.getTitle()) 
         $.ajax({
             type: "POST",
             url: '/strawFont',
             data: {
-                text:$fontInput.val()
+                text:$fontInput.val(),
+                fontname:$.trim(fe.getTitle())
             },
             success: function(data){
               $facebookG.append(data);

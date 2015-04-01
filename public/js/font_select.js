@@ -7,7 +7,14 @@ define(['FFF','zepto'],function(FFF,$){
 
 	FontSelect.ATTRS={
 		boundingBox:{
-			value:$('<ul class="dropdown-menu J_select" role="menu" aria-labelledby="dropdownMenu1"></ul>')
+			value:$('<div class="dropdown W_s_fl"></div>')
+		},
+		title:{
+			value:'选择字体',
+			changeFn:function(obj){
+				var that =this;
+				that.$btn.text(obj.value);
+			}
 		}
 	}
 	F.extend(FontSelect,Widget,{
@@ -16,12 +23,20 @@ define(['FFF','zepto'],function(FFF,$){
 		},
 		renderUI:function(){
 			var that=this;
+			var html ='';
+			var btnhtml='<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1">'+that.getTitle()+'<span class="caret"></span></button>';
 			$.ajax({
 	            type: "get",
 	            url: '/loadFontlist', 
-	            success: function(data){
-	               var html ='<li role="presentation"><a role="menuitem" tabindex="-1" href="#">SentyPaperCut</a></li>'
-	               that.getBoundingBox().append(html);
+	            success: function(data){  
+	            	 for (var i = 0; i < data.length; i++) {
+	            	 	var ff =data[i].replace(/\.\w*/g,"");
+	            	 	 html+='<li class="W_li_click" ><a href="#">'+ff+'</a></li>';
+	            	 }; 
+
+	                var ulhtml ='<ul class="dropdown-menu J_select"">'+html+'</ul>' ;
+	             
+	               that.getBoundingBox().append(btnhtml+ulhtml);
 
 	            },
 	            error: function(xhr, type){
@@ -32,13 +47,30 @@ define(['FFF','zepto'],function(FFF,$){
 
 		},
 		bindUI:function(){
-			$('.J_select li').on('click',function(){
+			var that=this;	
 
-			});
-			F.trigger('addAttr',{
+			setTimeout(function(){
+				var $dom =  that.getBoundingBox();
 
-			});
+			  that.$btn =$dom.find('#dropdownMenu1');
 
+			 var $ul =$dom.find('.J_select');
+           
+            var $lic =$dom.find('.W_li_click');
+
+            that.$btn.on('click',function(){
+            	$ul.show(); 
+            })
+            $lic.on('click',function(){
+            	 that.setTitle($(this).children('a').text());
+            	 $ul.hide(); 
+            })		
+
+			},1000)
+			
+			
+
+			 
 		},
 		destructor:function(){
 
