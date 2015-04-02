@@ -25,6 +25,8 @@
     "fontmin": "0.4.8",
     "jade": "^1.9.2",
     "morgan": "^1.5.2",
+    "multer": "^0.1.8",
+    "node-native-zip": "^1.1.0",
     "serve-favicon": "^2.2.0"
   }
 }
