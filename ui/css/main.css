@@ -16,3 +16,13 @@
 .W_s_chose{position: relative;}
 .W_s_upload{position: absolute;right: 0;top: 0;}
 .J_hover{height: 240px;}
+.W_s_loading{position: fixed;top: 0;left: 0;right: 0;bottom: 0;background: rgba(0,0,0,0.7);z-index: 300;animation:loading 1s linear infinite alternate;}
+.W_s_loading span{font-size: 80px;position: absolute;top: 40%;left:0;right:0;display: inline-block;width: 328.969px;margin: auto;color: #eee;text-shadow: 0 0 10px rgba(0,0,0,0.8);}
+@keyframes loading {
+	0% {
+		background: rgba(0,0,0,0.7);
+	}
+	100% {
+		background: rgba(0,0,0,0.3);
+	}
+}
