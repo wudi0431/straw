@@ -12,6 +12,5 @@
 .W_s_fontNamePosts>.label>span:last-child{cursor:pointer;}
 .W_s_fontNamePosts>.label>span:first-child{margin-right: 40px;}
 .label-primary.large{margin: 10px;}
-.W_s_panelClose,.W_s_link_download{display: none;}
 .W_s_chose{position: relative;}
 .W_s_upload{position: absolute;right: 0;top: 0;}

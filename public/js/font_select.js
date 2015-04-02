@@ -15,6 +15,9 @@ define(['FFF','zepto'],function(FFF,$){
 				var that =this;
 				that.$btn.text(obj.value);
 			}
+		},
+		selectIndex:{
+			value:0
 		}
 	}
 	F.extend(FontSelect,Widget,{
@@ -31,7 +34,7 @@ define(['FFF','zepto'],function(FFF,$){
 	            success: function(data){  
 	            	 for (var i = 0; i < data.length; i++) {
 	            	 	var ff =data[i].replace(/\.\w*/g,"");
-	            	 	 html+='<li class="W_li_click" ><a href="#">'+ff+'</a></li>';
+	            	 	 html+='<li class="W_li_click" ><a  index="'+i+'" href="#">'+ff+'</a></li>';
 	            	 }; 
 
 	                var ulhtml ='<ul class="dropdown-menu J_select"">'+html+'</ul>' ;
@@ -63,6 +66,7 @@ define(['FFF','zepto'],function(FFF,$){
             })
             $lic.on('click',function(){
             	 that.setTitle($(this).children('a').text());
+            	 that.setSelectIndex($(this).children('a').attr('index'));
             	 $ul.hide(); 
             })		
 

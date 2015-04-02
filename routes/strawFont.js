@@ -36,10 +36,7 @@ router.get('/', function(req, res, next) {});
 
 router.post('/', function(req, res, next) {
 
-    var fontname =req.body.fontname.replace(/\s+/g,'') ;
-
-  console.log(fontname)
-
+    var fontname =req.body.fontname;
     var srcPath = path.resolve(__dirname, '../public/fonts/'+fontname+'.ttf');
 
     mkdirSync('../public/temp/'+fontname+'',0,function(e){
@@ -83,7 +80,8 @@ router.post('/', function(req, res, next) {
         var data = {
             text: text,
             fontname:fontname,
-            paths: paths
+            paths: paths,
+            destPath:destPath
         };
 
         res.render('fontShow', data);

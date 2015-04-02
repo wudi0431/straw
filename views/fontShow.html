@@ -1,4 +1,4 @@
-<section class="W_s_fontPanel">
+ <section class="W_s_fontPanel">
   <style type="text/css">
     @font-face {font-family: '<%=fontname%>';
         src: url('<%=paths[3]%>'); /* IE9*/
@@ -18,19 +18,15 @@
   <%  console.log(paths) %>
     <div class="panel panel-info J_hover">
         <div class="panel-heading">
-            <span class="W_s_font_eg J_f_name"><%=text%></span>
+            <span class="W_s_font_eg J_f_name"><%=fontname%></span>
             <span class="glyphicon glyphicon-remove-circle W_s_panelClose J_close"></span>
         </div>
         <div class="panel-body">
             <h1 class="W_s_font_eg J_f_eg"><%=text%></h1>
-            <div class="W_s_link_download">
-                <a href="#" class="J_online">
-                    <span class="glyphicon glyphicon-cloud"></span>
-                    <span>引用线上地址</span>
-                </a>
+            <div name='<%=fontname%>' class="W_s_link_download">
                 <a href="#" class="J_local">
                     <span class="glyphicon glyphicon-cloud-download"></span>
-                    <span>本地下载</span>
+                    <a class="W_dowm_a" href="javasctipt:void(0)">本地下载</a>
                 </a>
             </div>
         </div>

@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var strawFont = require('./routes/strawFont');
 var loadFontlist = require('./routes/loadFontlist');
+var downFiels = require('./routes/downFiels');
 
 
 var app = express();
@@ -31,11 +32,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(__dirname + "/public/temp"));
+
 app.use('/', routes);
 
 app.use('/strawFont', strawFont);
 
 app.use('/loadFontlist', loadFontlist);
+
+app.use('/downFiels', downFiels);
 
 
 // catch 404 and forward to error handler

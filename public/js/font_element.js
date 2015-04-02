@@ -15,22 +15,10 @@ define(['FFF'],function(FFF){
 
 		},
 		renderUI:function(){
-			var that=this;
-			F.on('addAttr',function(obj){
-
-			});
-
-			//var html=
+			 
 		},
 		bindUI:function(){
-			var that=this;
-			$('.J_hover').on('hover', function() {
-				$(this).find('.J_close').show();
-				$(this).find('.W_s_link_download').show();
-			},function(){
-				$(this).find('.J_close').hide();
-				$(this).find('.W_s_link_download').hide();
-			});
+		 
 		},
 		destructor:function(){
 

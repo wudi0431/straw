@@ -27,10 +27,28 @@ require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
             url: '/strawFont',
             data: {
                 text:$fontInput.val(),
-                fontname:$.trim(fe.getTitle())
+                fontname:$.trim(fe.getTitle()),
+                id:fe.getSelectIndex()
             },
             success: function(data){
               $facebookG.append(data);
+              setTimeout(function(){
+                    var down = $facebookG.find('.W_s_link_download');
+                      down.on('click',function(){
+                              $.ajax({
+                                type: "get",
+                                url: '/downFiels?fontname='+$.trim($(this).attr('name'))+'',
+                                success: function(data){
+                                     
+                                },
+                                error: function(xhr, type){
+                                    alert('Ajax error!')
+                                }   
+                            }); 
+
+                      })
+              },1000)
+              
             },
             error: function(xhr, type){
                 alert('Ajax error!')
