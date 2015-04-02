@@ -9,12 +9,28 @@ var routes = require('./routes/index');
 var strawFont = require('./routes/strawFont');
 var loadFontlist = require('./routes/loadFontlist');
 var downFiels = require('./routes/downFiels');
-
+var uploadFiels = require('./routes/uploadFiels.js');
+ var multer = require('multer');
 
 var app = express();
-
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
+
+// var  destPath = path.join('./public/fonts/');
+// app.use(multer({ dest: destPath}));
+
+app.use(multer({
+  dest:'./public/fonts/',
+   rename: function (fieldname, filename) { 
+    return filename;
+  },
+  onFileUploadStart: function (file, data) {
+    console.log(file.originalname);
+  },
+  onFileUploadComplete: function (file) {
+    console.log(file.fieldname + ' uploaded to  ' + file.path);
+  }
+}));
 
 
 var ejs = require('ejs');
@@ -26,9 +42,12 @@ app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+
+ 
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));    
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -41,6 +60,11 @@ app.use('/strawFont', strawFont);
 app.use('/loadFontlist', loadFontlist);
 
 app.use('/downFiels', downFiels);
+
+app.use('/uploadFiels', uploadFiels);
+
+
+
 
 
 // catch 404 and forward to error handler
@@ -68,10 +92,10 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+  // res.render('error', {
+  //   message: err.message,
+  //   error: {}
+  // });
 });
 
 

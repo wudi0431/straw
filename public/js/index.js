@@ -21,62 +21,91 @@ require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
  
 
     $fontCreate.on('click', function() {
-         console.log(fe.getTitle()) 
-        $.ajax({
-            type: "POST",
-            url: '/strawFont',
-            data: {
-                text:$fontInput.val(),
-                fontname:$.trim(fe.getTitle()),
-                id:fe.getSelectIndex()
-            },
-            success: function(data){
-              $facebookG.append(data);
-              setTimeout(function(){
-                    var down = $facebookG.find('.W_s_link_download');
-                      down.on('click',function(){
-                              $.ajax({
+        var tt = fe.getTitle();
+         console.log(tt) 
+        if(tt!='选择字体'){
+            $.ajax({
+                type: "POST",
+                url: '/strawFont',
+                data: {
+                    text:$fontInput.val(),
+                    fontname:$.trim(fe.getTitle()),
+                    id:fe.getSelectIndex()
+                },
+                success: function(data){
+                  $facebookG.append(data);
+                    $facebookG.find('.W_s_panelClose').on('click',function(){
+                        $(this).parent('div').parent('div').parent().remove()
+                    })
+
+                  setTimeout(function(){
+                         $.ajax({
                                 type: "get",
-                                url: '/downFiels?fontname='+$.trim($(this).attr('name'))+'',
+                                url: '/downFiels?fontname='+tt+'',
                                 success: function(data){
+                                      var down = $facebookG.find('.W_dowm_a');
+                                        down.attr('href','http://localhost:8989/downFiels?fontname='+tt)
                                      
                                 },
                                 error: function(xhr, type){
                                     alert('Ajax error!')
                                 }   
-                            }); 
-
-                      })
-              },1000)
-              
-            },
-            error: function(xhr, type){
-                alert('Ajax error!')
-            }   
-        });
+                          });  
+                          
+                  },1000)
+                  
+                },
+                error: function(xhr, type){
+                    alert('Ajax error!')
+                }   
+            });
+        }
     });
+
+
+// $('#submit').on('click',function  (e) {
+//     e.preventDefault();
+
+
+//     var $$form = document.querySelector('form');
+//     var data = new FormData($$form);
+//     var 
+// debugger
+//     var xhr = new XMLHttpRequest();
+
+//     xhr.open('POST','/uploadFiels'); //url 是表单的提交地址。
+//     xhr.send(data);
+//     // body...
+// })
+
+   $('#file').on('change',function(){  
+        var data = new FormData();  
+        var files = $('#file')[0].files; 
+        var filenamereg =/([a-zA-Z]+)(.ttf)/;   
+        if (files && filenamereg.test(files[0].name)){  
+            data.append('codecsv',files[0]); 
+             $.ajax({  
+                cache: false,  
+                type: 'post',  
+                url:'/uploadFiels',                     
+                data : data,  
+                contentType: false,  
+                processData: false,  
+                success : function (data) {  
+                          
+                }  
+            })    
+        }else{
+           alert('上传文件类型错误或文件命名错误');
+
+        }
+       
+        
+    });  
+
+
+
 });
 
-
-
-// $(function() {
-//     var $fontInput = $('.fontInput');
-//     var $fontCreate = $('.fontCreate');
-//     var $fontShowBox = $('.W_fontShow_box');
-//     var $facebookG = $('#facebookG');
-
-
-//     $fontCreate.on('click', function() {
-//         $facebookG.show();
-//         $.ajax({
-//             method: "POST",
-//             url: '/strawFont',
-//             data: {
-//                 text:$fontInput.val()
-//             }
-//         }).done(function(msg) {
-//             $fontShowBox.html(msg);
-//             $facebookG.hide();
-//         });
-//     });
-// });
+ 
+ 
