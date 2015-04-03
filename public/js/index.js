@@ -59,6 +59,8 @@ require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
                     alert('Ajax error!')
                 }   
             });
+        }else{
+            alert('请输入文字')
         }
     });
 
