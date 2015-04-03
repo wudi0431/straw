@@ -44,7 +44,7 @@ require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
                                 url: '/downFiels?fontname='+tt+'',
                                 success: function(data){
                                       var down = $facebookG.find('.W_dowm_a');
-                                        down.attr('href','http://localhost:8989/downFiels?fontname='+tt)
+                                        down.attr('href',window.location.origin+'/downFiels?fontname='+tt)
                                      
                                 },
                                 error: function(xhr, type){
@@ -59,6 +59,8 @@ require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
                     alert('Ajax error!')
                 }   
             });
+        }else{
+            alert('请输入文字')
         }
     });
 
@@ -81,7 +83,7 @@ require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
    $('#file').on('change',function(){  
         var data = new FormData();  
         var files = $('#file')[0].files; 
-        var filenamereg =/([a-zA-Z]+)(.ttf)/;   
+        var filenamereg =/([a-zA-Z0-9]+)(.ttf)/;   
         if (files && filenamereg.test(files[0].name)){  
             data.append('codecsv',files[0]); 
              $.ajax({  
@@ -92,7 +94,7 @@ require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
                 contentType: false,  
                 processData: false,  
                 success : function (data) {  
-                          
+                   fe.getFonts();
                 }  
             })    
         }else{

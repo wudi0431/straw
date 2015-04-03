@@ -34,7 +34,9 @@ define(['FFF','zepto'],function(FFF,$){
 	            success: function(data){  
 	            	 for (var i = 0; i < data.length; i++) {
 	            	 	var ff =data[i].replace(/\.\w*/g,"");
-	            	 	 html+='<li class="W_li_click" ><a  index="'+i+'" href="#">'+ff+'</a></li>';
+	            	 	if(ff!=""){ 
+	            	 	 html+='<li  fontname="'+ff+'" class="W_li_click" ><a  index="'+i+'"  href="javasctipt:void(0)">'+ff+'</a></li>';
+	            	 	}
 	            	 }; 
 
 	                var ulhtml ='<ul class="dropdown-menu J_select"">'+html+'</ul>' ;
@@ -57,17 +59,17 @@ define(['FFF','zepto'],function(FFF,$){
 
 			  that.$btn =$dom.find('#dropdownMenu1');
 
-			 var $ul =$dom.find('.J_select');
+			 that.$ul =$dom.find('.J_select');
            
             var $lic =$dom.find('.W_li_click');
 
             that.$btn.on('click',function(){
-            	$ul.show(); 
+            	that.$ul.show(); 
             })
             $lic.on('click',function(){
             	 that.setTitle($(this).children('a').text());
             	 that.setSelectIndex($(this).children('a').attr('index'));
-            	 $ul.hide(); 
+            	 that.$ul.hide(); 
             })		
 
 			},1000)
@@ -77,6 +79,40 @@ define(['FFF','zepto'],function(FFF,$){
 			 
 		},
 		destructor:function(){
+
+		},
+		getFonts:function(){
+			var that=this;
+			var html='';	
+			$.ajax({
+	            type: "get",
+	            url: '/loadFontlist', 
+	            success: function(data){    
+	            	 for (var i = 0; i < data.length; i++) {
+	            	 	var ff =data[i].replace(/\.\w*/g,"");
+	            	 	var isadd =false;
+	            	 	if(ff=="") continue; 
+	            	  that.$ul.children('li').each(function(inde,item){
+	            	  	var fontname = $(item).attr('fontname');
+			          	     if(fontname==ff){
+			          	     	isadd=false
+			          	     	return false;
+			          	     }else{
+			          	     	isadd=true;
+			          	     }
+			          	      
+			          });
+	            	  if(isadd){
+	            	  	html+='<li  fontname="'+ff+'" class="W_li_click" ><a index="'+i+'" href="javasctipt:void(0)">'+ff+'</a></li>';
+	            	  }
+	            	 };   
+	                that.$ul.append(html);
+
+	            },
+	            error: function(xhr, type){
+	                alert('Ajax error!')
+	            }   
+           });
 
 		}
 	});
