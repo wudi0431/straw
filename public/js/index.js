@@ -41,7 +41,7 @@ require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
                   setTimeout(function(){
                          $.ajax({
                                 type: "get",
-                                url: '/downFiels?fontname='+tt+'',
+                                url: '/downFiels?fontname='+tt+'&fonttext='+$fontInput.val()+'',
                                 success: function(data){
                                       var down = $facebookG.find('.W_dowm_a');
                                         down.attr('href',window.location.origin+'/downFiels?fontname='+tt)

@@ -1,36 +1,58 @@
  var express = require('express');
 var router = express.Router();
 var fs = require('fs'); 
-var zip = require("node-native-zip"); 
+var archiver = require('archiver');
 var path = require('path');
 
 router.get('/', function(req, res, next) {
-   
-   var _fontname =req.query.fontname;
 
-   var fontspath = path.resolve(__dirname, '../public/temp/'+_fontname+'/'+_fontname+'');
+	var _fontname = req.query.fontname;
+	
+	var _fonttext = req.query.fonttext;
 
-   var demopath = path.resolve(__dirname, '../views/');
-    
-   var archive = new zip(); 
-	 
-	archive.addFiles([ 
-		{ name:"demo.html", path:demopath+'/demo.html'},  
-	    { name:"webfont.eot", path: fontspath+".eot" }, 
-	    { name:"webfont.svg", path: fontspath+".svg" }, 
-	    { name:"webfont.ttf", path: fontspath+".ttf" }, 
-	    { name:"webfont.woff", path: fontspath+".woff" }
-	], function (err) { 
-	    if (err) return console.log("err while adding files", err); 
-	 
-	    var buff = archive.toBuffer(); 
-	 
-	    fs.writeFile(fontspath+"webfont.zip", buff, function () { 
-	        console.log("Finished");   
-	        res.download(fontspath+".zip");
-	    }); 
-	}); 
+	var fontspath = path.resolve(__dirname, '../public/temp/' + _fontname + '/' + _fontname + '');
 
-}); 
+	var demopath = path.resolve(__dirname, '../views/');
+	
+	var output = fs.createWriteStream('../public/temp/'+_fontname+'/webfont.zip'); 
+
+	var archive = archiver('zip');
+
+	archive.on('error', function(err) {
+		res.status(500).send({
+			error: err.message
+		});
+	});
+
+	//on stream closed we can end the request
+	res.on('close', function() {
+		console.log('Archive wrote %d bytes', archive.pointer());
+		return res.status(200).send('OK').end();
+	});
+
+	//set the archive name
+	res.attachment(_fontname+'.zip');
+
+	//this is the streaming magic
+	archive.pipe(res);
+
+	var file1 = fontspath+".eot";
+	var file2 = fontspath+".svg";
+	var file3 = fontspath+".ttf";
+	var file4 = fontspath+".woff";
+	var file5 = demopath+'/demo.html';
+
+	archive
+	.append(fs.createReadStream(file1), { name: 'webfont.eot' })
+	.append(fs.createReadStream(file2), { name: 'webfont.svg' })
+	.append(fs.createReadStream(file3), { name: 'webfont.ttf' })
+	.append(fs.createReadStream(file4), { name: 'webfont.woff' })
+	.append(fs.createReadStream(file5), { name: 'demo.html'})
+	.finalize(); 
+	console.log(_fonttext);
+ 
+ 
+
+});
 
 module.exports = router;
