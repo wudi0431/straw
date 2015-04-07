@@ -9,7 +9,7 @@ var c=function(type,icon,txt){
  	}
  	$('body').on('click','.W_s_shadeClose',function(){
  		$('.W_s_shade').remove();
- 	})
+ 	});
 }
 return{
 	c:c
