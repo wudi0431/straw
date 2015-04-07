@@ -44,7 +44,11 @@ require(['dom','FFF','zepto','fontselect'],function(dom,FFF,$,FontSelect){
                                 url: '/downFiels?fontname='+tt+'&fonttext='+$fontInput.val()+'',
                                 success: function(data){
                                       var down = $facebookG.find('.W_dowm_a');
+<<<<<<< HEAD
                                          down.attr('href',window.location.origin+'/downFiels?fontname='+tt+'&fonttext='+$fontInput.val()+'');
+=======
+                                        down.attr('href',window.location.origin+'/downFiels?fontname='+tt+'&fonttext='+$fontInput.val()+'');
+>>>>>>> upstream/master
                                      
                                 },
                                 error: function(xhr, type){
