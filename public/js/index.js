@@ -36,10 +36,17 @@ require(['dom','FFF','zepto','fontselect','UILoading'],function(dom,FFF,$,FontSe
                     id:fe.getSelectIndex()
                 },
                 success: function(data){
+                	 var $oldefont = $('.W_s_font_eg');
+                  $oldefont.each(function(index,item){
+                  	 if($(this).text()==tt){
+                  	 	 $(this).parent('div').parent('div').parent().remove();
+                  	 }
+                  })
+
                   $facebookG.append(data);
                   	loading.hideLoading();
                     $facebookG.find('.W_s_panelClose').on('click',function(){
-                        $(this).parent('div').parent('div').parent().remove()
+                        $(this).parent('div').parent('div').parent().remove();
                     })
 
                   setTimeout(function(){

@@ -77,6 +77,9 @@ define(['FFF','zepto'],function(FFF,$){
 			 this.$dom.show();
 		},
 		hideLoading:function(){
+			 this.$dom.hide();
+		},
+		removeLoading:function(){
 			 this.$dom.remove();
 		}
 	});
