@@ -3,6 +3,7 @@ var router = express.Router();
 var fs = require('fs'); 
 var archiver = require('archiver');
 var path = require('path');
+var ejs = require('ejs');
 
 router.get('/', function(req, res, next) {
 
@@ -36,18 +37,33 @@ router.get('/', function(req, res, next) {
 	//this is the streaming magic
 	archive.pipe(res);
 
+
+
+
+
+    var str = fs.readFileSync(demopath+'/demo.html', 'utf8');
+
+
+    var ret = ejs.render(str, {
+        fontext: _fonttext
+    });
+	
+
+
+
 	var file1 = fontspath+".eot";
 	var file2 = fontspath+".svg";
 	var file3 = fontspath+".ttf";
 	var file4 = fontspath+".woff";
 	var file5 = demopath+'/demo.html';
 
+
 	archive
 	.append(fs.createReadStream(file1), { name: 'webfont.eot' })
 	.append(fs.createReadStream(file2), { name: 'webfont.svg' })
 	.append(fs.createReadStream(file3), { name: 'webfont.ttf' })
 	.append(fs.createReadStream(file4), { name: 'webfont.woff' })
-	.append(fs.createReadStream(file5), { name: 'demo.html'})
+	.append(ret, { name: 'demo.html'})
 	.finalize(); 
 	console.log(_fonttext);
  
