@@ -64,12 +64,18 @@ define(['FFF','zepto'],function(FFF,$){
             var $lic =$dom.find('.W_li_click');
 
             that.$btn.on('click',function(){
-            	that.$ul.show(); 
+              	that.$ul.show(); 
             })
-            $lic.on('click',function(){
-            	 that.setTitle($(this).children('a').text());
-            	 that.setSelectIndex($(this).children('a').attr('index'));
-            	 that.$ul.hide(); 
+            that.$ul.on('click',function(e){
+            	   var target = e.target.tagName.toUpperCase();
+            	     if(target=="A" || target=="LI"){
+            	     	var txt = $(e.target).text() || $(e.target).children('a').text(); 
+            	     	var index = $(e.target).attr('index') || $(e.target).children('a').attr('index'); 
+            	     	that.setTitle(txt);
+		            	 that.setSelectIndex(parseInt(index));
+		            	 $(this).hide();
+            	     }  
+            	  
             })		
 
 			},1000)
