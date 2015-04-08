@@ -17,7 +17,7 @@
 			url('<%=paths[1]%>#<%=fontname%>') format('svg');
 			/* iOS 4.1- */
 		}
-		.W_s_font_eg {
+		.W_s_font_<%=fontname%> {
 			font-family: "<%=fontname%>" !important;
 			font-size: 16px;
 			font-style: normal;
@@ -29,11 +29,11 @@
 	<% console.log(paths) %>
 		<div class="panel panel-info J_hover">
 			<div class="panel-heading">
-				<span class="W_s_font_eg J_f_name"><%=fontname%></span>
+				<span class="W_s_font_<%=fontname%> W_s_font_eg J_f_name"><%=fontname%></span>
 				<span class="glyphicon glyphicon-remove-circle W_s_panelClose J_close"></span>
 			</div>
 			<div class="panel-body">
-				<h1 class="W_s_font_eg J_f_eg"><%=text%></h1>
+				<h1 class="W_s_font_<%=fontname%> W_s_font_eg J_f_eg"><%=text%></h1>
 				<div name='<%=fontname%>' class="W_s_link_download">
 					<a href="javasctipt:void(0)" class="J_local">
 						<span class="glyphicon glyphicon-cloud-download"></span>

@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
 
 	var demopath = path.resolve(__dirname, '../views/');
 	
-	var output = fs.createWriteStream('../public/temp/'+_fontname+'/webfont.zip'); 
+	var output = fs.createWriteStream('../public/temp/'+_fontname+'/'+_fontname+'.zip'); 
 
 	var archive = archiver('zip');
 
@@ -45,7 +45,8 @@ router.get('/', function(req, res, next) {
 
 
     var ret = ejs.render(str, {
-        fontext: _fonttext
+        fontext: _fonttext,
+        fontname:_fontname
     });
 	
 
@@ -59,10 +60,10 @@ router.get('/', function(req, res, next) {
 
 
 	archive
-	.append(fs.createReadStream(file1), { name: 'webfont.eot' })
-	.append(fs.createReadStream(file2), { name: 'webfont.svg' })
-	.append(fs.createReadStream(file3), { name: 'webfont.ttf' })
-	.append(fs.createReadStream(file4), { name: 'webfont.woff' })
+	.append(fs.createReadStream(file1), { name: _fontname+'.eot' })
+	.append(fs.createReadStream(file2), { name: _fontname+'.svg' })
+	.append(fs.createReadStream(file3), { name: _fontname+'.ttf' })
+	.append(fs.createReadStream(file4), { name: _fontname+'.woff' })
 	.append(ret, { name: 'demo.html'})
 	.finalize(); 
 	console.log(_fonttext);

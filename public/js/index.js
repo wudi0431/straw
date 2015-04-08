@@ -24,6 +24,7 @@ require(['dom','FFF','zepto','fontselect','UILoading'],function(dom,FFF,$,FontSe
 
     $fontCreate.on('click', function() {
         var tt = fe.getTitle();
+        var txt = $fontInput.val();
          console.log(tt) 
         if(tt!='选择字体'){
         	loading.showLoading();
@@ -31,7 +32,7 @@ require(['dom','FFF','zepto','fontselect','UILoading'],function(dom,FFF,$,FontSe
                 type: "POST",
                 url: '/strawFont',
                 data: {
-                    text:$fontInput.val(),
+                    text:txt,
                     fontname:$.trim(fe.getTitle()),
                     id:fe.getSelectIndex()
                 },
@@ -52,10 +53,10 @@ require(['dom','FFF','zepto','fontselect','UILoading'],function(dom,FFF,$,FontSe
                   setTimeout(function(){
                          $.ajax({
                                 type: "get",
-                                url: '/downFiels?fontname='+tt+'&fonttext='+$fontInput.val()+'',
+                                url: '/downFiels?fontname='+tt+'&fonttext='+txt+'',
                                 success: function(data){
                                       var down = $facebookG.find('.W_dowm_a');
-                                         down.attr('href',window.location.origin+'/downFiels?fontname='+tt+'&fonttext='+$fontInput.val()+'');
+                                         down.attr('href',window.location.origin+'/downFiels?fontname='+tt+'&fonttext='+txt+'');
                                 },
                                 error: function(xhr, type){
                                     alert('Ajax error!')
@@ -69,8 +70,11 @@ require(['dom','FFF','zepto','fontselect','UILoading'],function(dom,FFF,$,FontSe
                     alert('Ajax error!')
                 }   
             });
-        }else{
-            alert('请输入文字')
+        } else if(txt==""){
+        	  alert('请输入文字');
+        }
+        else{
+            alert('选择字体');
         }
     });
  
