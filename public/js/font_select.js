@@ -35,7 +35,7 @@ define(['FFF','zepto'],function(FFF,$){
 	            	 for (var i = 0; i < data.length; i++) {
 	            	 	var ff =data[i].replace(/\.\w*/g,"");
 	            	 	if(ff!=""){ 
-	            	 	 html+='<li  fontname="'+ff+'" class="W_li_click" ><a  index="'+i+'"  href="javasctipt:void(0)">'+ff+'</a></li>';
+	            	 	 html+='<li  fontname="'+ff+'" class="W_li_click" ><a  index="'+i+'"  href="javascript:void(0)">'+ff+'</a></li>';
 	            	 	}
 	            	 }; 
 
@@ -111,7 +111,7 @@ define(['FFF','zepto'],function(FFF,$){
 			          })
 	            	  if(isadd){
 	            	  	var l =parseInt($ul.length)+1;
-	            	  	html+='<li  fontname="'+ff+'" class="W_li_click" ><a index="'+l+'" href="javasctipt:void(0)">'+ff+'</a></li>';
+	            	  	html+='<li  fontname="'+ff+'" class="W_li_click" ><a index="'+l+'" href="javascript:void(0)">'+ff+'</a></li>';
 	            	  }
 	            	 };   
 	                that.$ul.append(html);

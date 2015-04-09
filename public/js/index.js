@@ -1,13 +1,11 @@
 require.config({
     paths:{
-        dom:'dom',
-        font_element:'font_element',
         fontselect:'font_select',
         UILoading:'UILoading'
     }
 });
 
-require(['dom','FFF','zepto','fontselect','UILoading'],function(dom,FFF,$,FontSelect,UILoading){
+require(['FFF','zepto','fontselect','UILoading'],function(FFF,$,FontSelect,UILoading){
       var $d = $('.W_s_chose');
       var fe = new FontSelect.FontSelect().render({
          container:$d 
